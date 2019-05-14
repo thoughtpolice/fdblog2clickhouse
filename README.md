@@ -12,6 +12,12 @@ traditional OLAP SQL queries.
 The tool is packaged as a Docker image and can be run easily on a database
 host in the cluster, and supports ClickHouse HTTP authentication.
 
+> **WARNING**: This code is very rough and may not work correctly or capture
+> all the necessary trace information you need. No advanced schema management
+> is provided (nor any schema compatibility guaranteed at this time). See the
+> `TODO` information below. Patches to add columns and make the code more
+> robust are welcome.
+
 ## Configure FoundationDB
 
 The `foundtiondb.conf` file **MUST** be configured to emit trace logs in JSON,
@@ -222,12 +228,16 @@ If you want to improve this project or send patches, here are some ideas:
 - [ ] Implement support for many more column types in the trace logs,
       and test their usage
 - [ ] Various Schema improvements
-   - Plenty of ClickHouse features to leverage for better queries: dictionaries,
-     IP types, various table/utility functions
-   - Probably worth investigating `AggregatingMergeTree` or `SummingMergeTree`
-     for various rollup tables.
-   - Can likely create some useful `MATERIALIZED VIEW`s out of the 'raw' data
-     table
+  - Plenty of ClickHouse features to leverage for better queries: dictionaries,
+    IP types, various table/utility functions
+  - Probably worth investigating `AggregatingMergeTree` or `SummingMergeTree`
+    for various rollup tables.
+  - Can likely create some useful `MATERIALIZED VIEW`s out of the 'raw' data
+    table
+- [ ] Think about replacing `inotifywait` with `pyinotify` or something.
+  - Would be nice to have no operational difference between image and the
+    ordinary python code, but probably a bit more complex.
+- [ ] Look into trimming down the Docker image, somehow.
 
 # License
 
