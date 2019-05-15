@@ -83,12 +83,13 @@ def main(argv):
 
     # these are the only columns we're interested in
     columns = {
-        'ID'         : [           'String', 'CODEC(ZSTD)',        'Event Identifier' ],
         'Severity'   : [           'UInt32', 'CODEC(Delta, ZSTD)', 'Event Severity Code' ],
         'Machine'    : [           'String', 'CODEC(ZSTD)',        'Machine ID for Event' ],
         'LogGroup'   : [           'String', 'CODEC(ZSTD)',        'Group for Event Type' ],
         'Time'       : [         'DateTime', 'CODEC(ZSTD)',        'Event Timestamp' ],
         'Type'       : [           'String', 'CODEC(ZSTD)',        'Event Type' ],
+
+        'ID'         : [ 'Nullable(String)', 'CODEC(ZSTD)',        'Event Identifier' ],
     }
 
     f = argv[1]
