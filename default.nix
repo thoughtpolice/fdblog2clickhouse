@@ -62,8 +62,8 @@ let
 
         config = {
           Entrypoint = [ "/bin/entrypoint" ];
-          WorkingDir = "/data";
-          Volumes = { "/data" = {}; };
+          WorkingDir = "/logs";
+          Volumes = { "/logs" = {}; };
         };
       };
   };
