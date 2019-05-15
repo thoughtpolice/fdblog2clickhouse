@@ -16,7 +16,14 @@ echo -n "creating schema... "
 
 echo "watching logs in ${LOG_DIR}"
 while read line; do
+  fname=$(echo "${line}" | awk '{print $3}')
   tracefile=$(echo "${line}" | awk '{print $1$3}')
+
+  [[ -n "${WATCH_COMPLETION_FILE}" ]] && [[ "$fname" == "sim-completed" ]] && \
+    echo "NOTE: found 'sim-completed' file; exiting..." && \
+    exit 0
+
+  [[ ${fname: -5} != ".json" ]] && continue
   echo "submitting trace file '${tracefile}' to ClickHouse..."
   /bin/trace-convert "$@" "${tracefile}"
 done < <(inotifywait -m "${LOG_DIR}" -e close_write)
