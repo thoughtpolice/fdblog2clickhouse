@@ -116,7 +116,7 @@ def main(argv):
     data = data[columns.keys()] # no usecols= param??
 
     # munge some types
-    data['Time'] = data['Time'].astype('datetime64[s]')
+    data['Time'] = data['Time'].astype(int)
 
     # print info
     print(data.info())
