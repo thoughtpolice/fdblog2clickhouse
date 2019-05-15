@@ -57,7 +57,7 @@ $ docker run -d --rm \
     -e CLICKHOUSE_ADDR=http://clickhouse-server:8123 \
     -e CLICKHOUSE_DB=testing \
     -e CLICKHOUSE_TABLE=cluster01 \
-    -v /var/log/foundationdb:/data/logs \
+    -v /var/log/foundationdb:/logs \
     thoughtpolice/fdblog2clickhouse:latest
 ```
 
@@ -71,10 +71,10 @@ The logs look something like this upon rotation:
 
 ```
 creating schema... 200
-watching logs in /data/logs
+watching logs in /logs
 Setting up watches.
 Watches established.
-submitting trace file '/data/logs/trace.127.0.0.1.4500.1557761852.s7mRgR.22.json' to ClickHouse...
+submitting trace file '/logs/trace.127.0.0.1.4500.1557761852.s7mRgR.22.json' to ClickHouse...
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 25810 entries, 0 to 25809
 Data columns (total 8 columns):

@@ -3,7 +3,7 @@
 set -eo pipefail
 [[ -n "${DEBUG}" ]] && set -x
 
-LOG_DIR=${LOG_DIR:-/data/logs}
+LOG_DIR=${LOG_DIR:-/logs}
 
 [[ -z "${CLICKHOUSE_DB}"    ]] && >&2 echo "ERROR: CLICKHOUSE_DB must be set!" && exit 1
 [[ -z "${CLICKHOUSE_TABLE}" ]] && >&2 echo "ERROR: CLICKHOUSE_TABLE must be set!" && exit 1
