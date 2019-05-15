@@ -83,14 +83,12 @@ def main(argv):
 
     # these are the only columns we're interested in
     columns = {
-        'As'         : [ 'Nullable(String)', 'CODEC(NONE)', 'Lorem ipsum' ],
-        'ID'         : [           'String', 'CODEC(NONE)', 'Lorem ipsum' ],
-        'Locality'   : [ 'Nullable(String)', 'CODEC(NONE)', 'Lorem ipsum' ],
-        'Machine'    : [           'String', 'CODEC(NONE)', 'Lorem ipsum' ],
-        'Severity'   : [           'UInt32', 'CODEC(NONE)', 'Event severity' ],
-        'Transition' : [ 'Nullable(String)', 'CODEC(NONE)', 'Lorem ipsum' ],
-        'Time'       : [         'DateTime', 'CODEC(NONE)', 'Event timestamp' ],
-        'Type'       : [           'String', 'CODEC(NONE)', 'Event type' ],
+        'ID'         : [           'String', 'CODEC(ZSTD)',        'Event Identifier' ],
+        'Severity'   : [           'UInt32', 'CODEC(Delta, ZSTD)', 'Event Severity Code' ],
+        'Machine'    : [           'String', 'CODEC(ZSTD)',        'Machine ID for Event' ],
+        'LogGroup'   : [           'String', 'CODEC(ZSTD)',        'Group for Event Type' ],
+        'Time'       : [         'DateTime', 'CODEC(ZSTD)',        'Event Timestamp' ],
+        'Type'       : [           'String', 'CODEC(ZSTD)',        'Event Type' ],
     }
 
     f = argv[1]
